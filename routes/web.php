@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsApiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/news-api', [NewsApiController::class, 'index'])->name('newsApi');
+Route::get('/preload-articles', [NewsApiController::class, 'preloadArticles'])->name('newsAPI.preloadArticles');
+Route::post('/update-database-records', [NewsApiController::class, 'updateDatabaseRecords'])->name('newsApi.updateDatabaseRecords');
+Route::get('/delete-database-records', [NewsApiController::class, 'cleanDatabase'])->name('newsApi.cleanDatabase');
+//
