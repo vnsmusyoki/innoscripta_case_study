@@ -85,8 +85,7 @@ class NewsApiController extends Controller
             if (empty($response['articles'])) {
                 return response()->json(['error' => 'No articles found.'], 404);
             }
-
-            // Save articles to the database
+ 
             foreach ($response['articles'] as $article) {
                 NewsArticles::create([
                     'news_category' => 'NewsAPI',
@@ -110,7 +109,7 @@ class NewsApiController extends Controller
 
     public function cleanDatabase(Request $request)
     {
-        
+
         try {
             NewsArticles::where('news_category', 'NewsAPI')->delete();
 

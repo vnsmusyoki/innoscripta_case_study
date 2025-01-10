@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AllApisController;
 use App\Http\Controllers\GuardianNewsApiController;
 use App\Http\Controllers\NewsApiController;
 use App\Http\Controllers\NewYorkTimesApiController;
@@ -34,4 +35,6 @@ Route::get('/guardian-news-api', [GuardianNewsApiController::class, 'index'])->n
 Route::get('/guardian-news-api/fetch-data', [GuardianNewsApiController::class, 'getAllArticles'])->name('guardianNewsApi.getAllArticles');
 Route::post('/guardian-news-api/fetch-api-data', [GuardianNewsApiController::class, 'updateDatabaseRecords'])->name('guardianNewsApi.updateDatabaseRecords');
 Route::post('/guardian-news-api/delete-api-data', [GuardianNewsApiController::class, 'deleteGuardianApiRecords'])->name('guardianNewsApi.cleanDatabase');
+
+Route::get('/fetch-all-articles', [AllApisController::class, 'fetchAllArticles'])->name('allArticles');
 //

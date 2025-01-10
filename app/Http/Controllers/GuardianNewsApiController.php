@@ -21,17 +21,7 @@ class GuardianNewsApiController extends Controller
         return view('guardian-api.index');
     }
 
-    public function updateArticles(Request $request)
-    {
-
-        try {
-            $query = $request->input('query', '');
-            $response = $this->guardianNewsService->getArticles($query);
-            dd($response['response']['results']);
-        } catch (\Exception $e) {
-        }
-    }
-
+  
     public function getAllArticles(Request $request)
     {
         $page = $request->get('page', 1);
