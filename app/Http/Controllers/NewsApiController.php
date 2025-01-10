@@ -110,8 +110,27 @@ class NewsApiController extends Controller
 
     public function cleanDatabase(Request $request)
     {
-        Log::info("News API - Cleaning database");
-        NewsArticles::where('news_category', 'NewsAPI')->delete();
-        return redirect()->back();
+        
+        try {
+            NewsArticles::where('news_category', 'NewsAPI')->delete();
+
+            $message = 'Successfully deleted news articles';
+
+            if ($request->ajax()) {
+                return response()->json(['response' => 'success', 'message' => $message], 200);
+            } else {
+                return redirect()->back()->with('success', $message);
+            }
+        } catch (\Exception $e) {
+            Log::error("Failed to delete News Api articles", ['error' => $e->getMessage()]);
+
+            $message = 'Failed to delete articles: ' . $e->getMessage();
+
+            if ($request->ajax()) {
+                return response()->json(['response' => 'error', 'message' => $message], 500);
+            } else {
+                return redirect()->back()->with('error', $message);
+            }
+        }
     }
 }

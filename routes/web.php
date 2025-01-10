@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GuardianNewsApiController;
 use App\Http\Controllers\NewsApiController;
 use App\Http\Controllers\NewYorkTimesApiController;
 use Illuminate\Support\Facades\Route;
@@ -28,4 +29,9 @@ Route::get('/new-york-api', [NewYorkTimesApiController::class, 'index'])->name('
 Route::get('/preload-new-york-api-articles', [NewYorkTimesApiController::class, 'preloadArticles'])->name('newYorkApi.preloadArticles');
 Route::get('/fetch-latest-new-york-api-articles', [NewYorkTimesApiController::class, 'fetchLatestArticles'])->name('newYorkApi.fetchLatestArticles');
 Route::get('/delete-new-york-api-articles', [NewYorkTimesApiController::class, 'deleteNewYorkTimesArticles'])->name('newsApi.deleteNeyYorkTimesArticles');
+
+Route::get('/guardian-news-api', [GuardianNewsApiController::class, 'index'])->name('guardianNewsApi');
+Route::get('/guardian-news-api/fetch-data', [GuardianNewsApiController::class, 'getAllArticles'])->name('guardianNewsApi.getAllArticles');
+Route::post('/guardian-news-api/fetch-api-data', [GuardianNewsApiController::class, 'updateDatabaseRecords'])->name('guardianNewsApi.updateDatabaseRecords');
+Route::post('/guardian-news-api/delete-api-data', [GuardianNewsApiController::class, 'deleteGuardianApiRecords'])->name('guardianNewsApi.cleanDatabase');
 //

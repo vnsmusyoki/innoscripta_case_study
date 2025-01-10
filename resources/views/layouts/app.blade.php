@@ -102,6 +102,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('newYorkApi') }}">New York Times API</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('guardianNewsApi') }}">Guardian News API</a>
+                    </li>
 
                 </ul>
                 <form class="d-flex" role="search">
