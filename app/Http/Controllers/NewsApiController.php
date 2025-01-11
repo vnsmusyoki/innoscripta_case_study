@@ -32,7 +32,7 @@ class NewsApiController extends Controller
         $pageSize = $request->get('pageSize', 30);
         $query = $request->get('searchQuery', '');
 
-        $articlesQuery = NewsArticles::query();
+        $articlesQuery = NewsArticles::where('news_category', 'NewsAPI');
         if ($request->has('searchQuery') && !empty($request->searchQuery)) {
             $searchKey = $request->searchQuery;
             $articlesQuery->where(function ($q) use ($searchKey) {
@@ -85,7 +85,7 @@ class NewsApiController extends Controller
             if (empty($response['articles'])) {
                 return response()->json(['error' => 'No articles found.'], 404);
             }
- 
+
             foreach ($response['articles'] as $article) {
                 NewsArticles::create([
                     'news_category' => 'NewsAPI',
